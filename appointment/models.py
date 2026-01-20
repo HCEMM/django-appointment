@@ -215,6 +215,10 @@ class Service(models.Model):
 
 class StaffMember(models.Model):
     #user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_("User"))
+    position = models.PositiveIntegerField(
+        default=0,
+        verbose_name=_("Display Order")
+    )
     microscope = models.OneToOneField(
         "reservation.Microscope",
         default=False,
@@ -269,7 +273,7 @@ class StaffMember(models.Model):
         verbose_name_plural = _("Microscope hours")
         #ordering = ['user__first_name', 'user__last_name']
 
-        ordering = ["id"]
+        ordering = ["position"]
 
     def __str__(self):
         return f"{self.get_staff_member_name()}"

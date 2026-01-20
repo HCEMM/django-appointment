@@ -61,9 +61,11 @@ class StaffMemberForm(forms.ModelForm):
 class StaffMemberAdmin(admin.ModelAdmin):
     form = StaffMemberForm
     list_display = (
-        'get_staff_member_name', 'get_slot_duration', 'lead_time', 'finish_time', 'work_on_saturday', 'work_on_sunday')
+        'get_staff_member_name', 'get_slot_duration', 'lead_time', 'finish_time', 'work_on_saturday', 'work_on_sunday', 'position')
     search_fields = ('user__email', 'user__first_name', 'user__last_name')
     list_filter = ('work_on_saturday', 'work_on_sunday', 'lead_time', 'finish_time')
+    list_editable = ('position',)
+    ordering = ('position',)
 
 
 @admin.register(DayOff)
